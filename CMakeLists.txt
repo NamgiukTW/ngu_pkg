@@ -19,7 +19,8 @@ generate_messages(
 )
 
 catkin_package(
-  CATKIN_DEPENDS roscpp std_msgs message_runtime
+  LIBRARIES test_pkg
+  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
 )
 
 include_directories(
@@ -35,4 +36,10 @@ target_link_libraries(hello_world_pubnode
 )
 target_link_libraries(hello_world_subnode
   ${catkin_LIBRARIES}
+)
+
+catkin_install_python(PROGRAMS
+  src/hello_pub.py
+  src/hello_sub.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
